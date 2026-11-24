@@ -38,9 +38,15 @@ Alt ajan tanımları: `.claude/agents/*.md`. Takımın iş tarifi: `takimlar/blo
 | **"haftalık değerlendirme"** | Son 7 günün kayıtlarından rapor: ne çıktı, kabul oranı, hangi ajan nerede takıldı. |
 
 ## 4. Git kuralları
-- Yerel commit serbest (Conventional Commits, İngilizce). **Push her zaman Zehra'ya sorulur.**
+- **Commit'i sormadan at** (Conventional Commits, İngilizce), her anlamlı adım sonunda. Koşul:
+  1. İlgili testler / build geçti (blog kurulunca: `pnpm --dir blog build`).
+  2. Pre-commit hook (`scripts/guvenlik-tarama.mjs`) temiz: anahtar, şifre, telefon, TC no, e-posta, `.env` yok.
+     Hook yerelde bir kez etkinleştirilir: `git config core.hooksPath .githooks`. `--no-verify` yasak.
+  3. Commit sonrası Zehra'ya tek satırla ne commit'lendiğini söyle.
+- **Push her zaman Zehra'ya sorulur.**
 - `main` her zaman çalışır durumda. Büyük değişiklikler `feat/<ad>` dalında.
-- `.env` ve kişisel dosyalar asla commit edilmez.
+- `.env` ve kişisel dosyalar asla commit edilmez. Tarama bir şey yakalarsa commit'i düzeltip tekrar dene;
+  gerçek kişisel veriyse dosyadan çıkar, "yanlış alarm"sa `scripts/guvenlik-izin.txt`'ye gerekçesiyle ekle.
 
 ## 5. Proje hafızası
 - `docs/PROGRESS.md` — tarihli ilerleme günlüğü (en yeni en üstte).

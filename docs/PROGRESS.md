@@ -1,5 +1,10 @@
 # İlerleme günlüğü
 
+## 2026-11-24 (2) — Zehra + Claude
+- **Yapıldı:** Commit'ler artık sormadan (ADR-006). Pre-commit güvenlik taraması eklendi ve test edildi
+  (sahte anahtar/telefon/TC/e-posta/.env/kişisel klasör → commit durdu; temiz dosyalar → geçti).
+- **Sıradaki:** Faz 2 — tasarım araştırması.
+
 ## 2026-11-24 — Zehra + Claude
 - **Yapıldı:** Ofis temeli kuruldu: `ANAYASA.md`, `CLAUDE.md`, `sirket/` (ajan kimliği, kayıt formatı),
   `takimlar/blog/` (iş tarifi, kurallar, kaynaklar, defter, durum), `.claude/agents/` altında 5 alt ajan

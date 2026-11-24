@@ -1,0 +1,2 @@
+# Yanlış alarm izin listesi: her satır, taramanın görmezden geleceği tam metin.
+# Eklemeden önce bir "# gerekçe" satırı yaz.

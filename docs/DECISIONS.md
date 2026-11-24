@@ -21,5 +21,12 @@
 - **Karar:** Ofis görünümü blog sitesinden ayrı, `ofis/` altında yerelde çalışan bir sayfa olacak; Vercel'e gitmeyecek.
 - **Sonuç:** Veri kaynağı `takimlar/*/kosu/*/olaylar.jsonl` ve `durum.json`.
 
+## ADR-006: Commit'ler otomatik, push onaylı (2026-11-24)
+- **Bağlam:** Zehra sistemin daha otomatik olmasını, yalnızca gerçekten önemli konularda sorulmasını istedi.
+- **Karar:** Claude ve ajanlar sormadan commit atar; şart: testler/build geçer ve pre-commit güvenlik taraması
+  (`scripts/guvenlik-tarama.mjs`: anahtar, şifre, telefon, TC no, IBAN, e-posta, `.env`, kimlik belgeleri) temiz çıkar.
+  `--no-verify` yasak. Push, yayın onayı, kural değişikliği, yeni bağımlılık, veri silme hâlâ Zehra'ya sorulur.
+- **Sonuç:** Yeni klonda hook bir kez etkinleştirilir: `git config core.hooksPath .githooks`.
+
 ## ADR-005: Barındırma Vercel — sonra (2026-11-24)
 - **Karar:** Blog Vercel'de yayınlanacak, ama ilk aşamada yerelde çalışılır. Site teknolojisi: Astro (öneri, tasarım aşamasında kesinleşir).

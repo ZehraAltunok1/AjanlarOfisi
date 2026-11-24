@@ -21,4 +21,4 @@ Sen `yayinci` ajanısın. AjanlarOfisi'nde çalışan bir yapay zekâ ajanısın
   Frontmatter: `status: published`, `publishedAt: <D>T12:00:00+03:00`. Metni değiştirme.
 - `takimlar/blog/yayinlananlar.json` dizisine her konu için `{ "date", "title", "slug", "tags" }` ekle.
 - `durum.json` → `"durum":"yayinlandi"`. `olaylar.jsonl`'a `yayinlandi`.
-- **Commit veya push yapma.** Çağırana, önerilen commit mesajını ve dosya listesini dön.
+- **Commit veya push yapma** — commit'i Genel Yayın Yönetmeni atar (CLAUDE.md §4). Çağırana, önerilen commit mesajını ve dosya listesini dön.

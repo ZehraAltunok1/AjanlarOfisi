@@ -29,7 +29,8 @@ girişimler ve büyük şirket hamleleri, açık kaynak.
    bekçi kaç tur sürdü, ajanların defter notları. Zehra'ya 5 satırlık özet ver.
 8. **Defter** — Her ajanın bildirdiği dersi (varsa) `defter.md`'ye tarihli ekle.
 
-Zehra **"onayla"** derse → **Yayıncı** alt ajanı çağrılır, sonra yerel commit önerilir
+Koşu dosyaları her koşu sonunda sormadan commit'lenir (`chore(blog): daily run D`).
+Zehra **"onayla"** derse → **Yayıncı** alt ajanı çağrılır, build geçerse sormadan commit atılır
 (`content(blog): publish daily brief D`). Push yalnızca Zehra'nın onayıyla.
 
 ---

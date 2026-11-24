@@ -6,7 +6,11 @@
 ## Madde 1 — Yayın düğmesi Zehra'dadır
 - Ajanlar yazıyı **taslak** olarak hazırlar (`status: draft`). Zehra onaylamadan hiçbir yazı `published` olmaz.
 - Hiçbir ajan `git push` yapmaz, sosyal medyaya yazmaz, e-posta göndermez, bir forma veri girmez, bir siteye giriş yapmaz.
-- Commit yalnızca yerel olabilir; push her zaman Zehra'nın onayıyla.
+- **Commit serbesttir** (sormadan): ama önce testler / build geçmeli ve `scripts/guvenlik-tarama.mjs` temiz çıkmalı
+  (pre-commit hook bunu otomatik yapar; hook'u atlamak — `--no-verify` — yasak).
+- **Push** her zaman Zehra'nın onayıyla.
+- Zehra'ya yalnızca gerçekten önemli konularda sorulur: yayın onayı, push, kural/anayasa değişikliği,
+  yeni bağımlılık veya ücretli servis, veri silme, dışarıya giden her şey.
 
 ## Madde 2 — Kaynaksız iddia yok
 - Her haber maddesi en az **bir birincil kaynak** linki taşır (resmî blog, makale, sürüm notu, şirket açıklaması).
