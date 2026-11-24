@@ -1,0 +1,19 @@
+{"t":"2026-11-24T21:15:16+03:00","ajan":"yayin-yonetmeni","olay":"basladi","not":"ilk deneme koşusu (elle başlatıldı)"}
+{"t":"2026-11-24T21:15:43+03:00","ajan":"haber-avcisi","olay":"basladi","not":"kaynaklar.md taranacak, en fazla 30 sayfa"}
+{"t":"2026-11-24T21:20:36+03:00","ajan":"haber-avcisi","olay":"bitti","cikti":"01-haberler.md","not":"15 aday, 27 sayfa okundu"}
+{"t":"2026-11-24T21:20:59+03:00","ajan":"yayin-yonetmeni","olay":"teslim","kimden":"haber-avcisi","kime":"dogrulayici","not":"15 aday"}
+{"t":"2026-11-24T21:21:14+03:00","ajan":"dogrulayici","olay":"basladi","not":"01-haberler.md adaylari kontrol ediliyor"}
+{"t":"2026-11-24T21:24:59+03:00","ajan":"dogrulayici","olay":"bitti","cikti":"02-dogrulanmis.md","not":"13 ✅ / 2 🟡 / 0 ⛔ (adaylar); Deep Dive: Nvidia+Megaspeed"}
+{"t":"2026-11-24T21:25:35+03:00","ajan":"yayin-yonetmeni","olay":"teslim","kimden":"dogrulayici","kime":"yazar","not":"13 ✅ / 2 🟡 / 0 ⛔"}
+{"t":"2026-11-24T21:25:49+03:00","ajan":"yazar","olay":"basladi","not":"02-dogrulanmis.md'den brief ve makale yazılacak"}
+{"t":"2026-11-24T21:27:17+03:00","ajan":"yazar","olay":"bitti","cikti":"03-ozet.md, 04-makale.md","not":"brief 7 madde; makale ~913 kelime (kaynaklar hariç)"}
+{"t":"2026-11-24T21:27:42+03:00","ajan":"yayin-yonetmeni","olay":"teslim","kimden":"yazar","kime":"bekci","not":"brief 7 madde, makale ~913 kelime"}
+{"t":"2026-11-24T21:28:53+03:00","ajan":"bekci","olay":"basladi","not":"Round 1: 03-ozet ve 04-makale denetimi"}
+{"t":"2026-11-24T21:28:53+03:00","ajan":"bekci","olay":"red","not":"02 disi iddialar: CVE-2026-16232 kampanya baglantisi (03-ozet); Neither document mentions the other + powers cumlesi (04-makale)"}
+{"t":"2026-11-24T21:29:08+03:00","ajan":"yayin-yonetmeni","olay":"teslim","kimden":"bekci","kime":"yazar","not":"tur 1 red: 3 doğrulanmamış cümle"}
+{"t":"2026-11-24T21:29:14+03:00","ajan":"yazar","olay":"basladi","not":"bekçi tur 1 red düzeltmeleri"}
+{"t":"2026-11-24T21:29:55+03:00","ajan":"yazar","olay":"bitti","cikti":"03-ozet.md, 04-makale.md","not":"tur 1 red düzeltildi; makale 890 kelime (kaynaklar hariç)"}
+{"t":"2026-11-24T21:30:15+03:00","ajan":"yayin-yonetmeni","olay":"teslim","kimden":"yazar","kime":"bekci","not":"tur 2: düzeltilmiş taslaklar"}
+{"t":"2026-11-24T21:30:30+03:00","ajan":"bekci","olay":"basladi","not":"Round 2: revize 03-ozet ve 04-makale denetimi"}
+{"t":"2026-11-24T21:30:30+03:00","ajan":"bekci","olay":"kabul","not":"Round 2: 3 red maddesi giderildi, yeni 02-disi iddia yok"}
+{"t":"2026-11-24T21:31:06+03:00","ajan":"yayin-yonetmeni","olay":"onay-bekliyor","cikti":"06-rapor.md","not":"bekçi tur 2 kabul; Zehra onayı bekleniyor"}

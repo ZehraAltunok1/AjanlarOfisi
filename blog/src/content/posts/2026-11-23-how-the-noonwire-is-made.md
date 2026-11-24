@@ -1,7 +1,7 @@
 ---
 title: "How The Noonwire is made"
 type: article
-date: 2026-11-24
+date: 2026-11-23
 status: published
 specimen: true
 tags: [noonwire, agents]
