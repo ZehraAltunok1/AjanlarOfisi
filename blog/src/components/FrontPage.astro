@@ -1,0 +1,257 @@
+---
+import { t } from '../i18n/ui';
+import { excerpt, padNo, postUrl, type Edition } from '../lib/editions';
+import Engraving from './Engraving.astro';
+
+interface Props {
+  edition: Edition;
+}
+const { edition } = Astro.props;
+const { article, brief, items } = edition;
+const paras = article?.body ? excerpt(article.body, 260) : [];
+const half = Math.ceil(paras.length / 2);
+const firstCol = paras.slice(0, half);
+const secondCol = paras.slice(half);
+const verifiedCount = items.filter((i) => i.verified === 'primary').length;
+---
+
+<main id="main" class="front">
+  {
+    article && (
+      <section class="lead" aria-labelledby="lead-title">
+        <div class="sc kicker">Deep dive · {article.data.tags[0] ?? 'technology'}</div>
+        <h1 id="lead-title" class="headline">
+          <a href={postUrl(article)}>{article.data.title}</a>
+        </h1>
+        {article.data.deck && <p class="deck">{article.data.deck}</p>}
+        <div class="ornament" aria-hidden="true">✦ ✦ ✦</div>
+      </section>
+    )
+  }
+
+  <div class="grid">
+    {
+      article && (
+        <>
+          <div class="col col-1">
+            <div class="justify dropcap">
+              {firstCol.map((p) => (
+                <p set:html={p} />
+              ))}
+            </div>
+            <div class="sc meta">
+              {article.data.readingMinutes && t('lead.minRead', { n: article.data.readingMinutes })}
+              {' · '}
+              {t('lead.sources', { n: edition.sourceCount })} ✓
+            </div>
+          </div>
+          <div class="col col-2">
+            <Engraving tag={article.data.tags[0]} caption={`Fig. 1 — ${article.data.title}`} />
+            <div class="justify">
+              {secondCol.map((p) => (
+                <p set:html={p} />
+              ))}
+            </div>
+            <a class="continued sc" href={postUrl(article)}>
+              {t('lead.continued')} →
+            </a>
+          </div>
+        </>
+      )
+    }
+
+    <aside class="col brief" aria-labelledby="brief-title">
+      <h2 id="brief-title" class="sc brief-title">
+        {brief ? <a href={postUrl(brief)}>{t('brief.title')}</a> : t('brief.title')}
+      </h2>
+      {
+        items.map((item, i) => (
+          <>
+            {i > 0 && (
+              <div class="fleuron" aria-hidden="true">
+                ❧
+              </div>
+            )}
+            <article class="item">
+              <h3>{item.headline}</h3>
+              <p class="justify">
+                <Fragment set:html={item.html} />{' '}
+                {item.sources.map((s, j) => (
+                  <>
+                    {j > 0 && ', '}
+                    <a class="src" href={s.url} rel={s.url.startsWith('http') ? 'noopener' : undefined}>
+                      {s.name}
+                    </a>
+                  </>
+                ))}{' '}
+                {item.verified === 'primary' && (
+                  <span class="badge" title={t('brief.verified')}>
+                    ✓<span class="sr-only">{t('brief.verified')}</span>
+                  </span>
+                )}
+                {item.verified === 'secondary' && (
+                  <span class="badge" title={t('brief.secondary')}>
+                    ◐<span class="sr-only">{t('brief.secondary')}</span>
+                  </span>
+                )}
+              </p>
+            </article>
+          </>
+        ))
+      }
+    </aside>
+  </div>
+
+  <div class="run sc">
+    <span>{edition.specimen ? 'Specimen run' : `Run #${padNo(edition.number)}`}</span>
+    <span>{edition.sourceCount} sources cited</span>
+    <span>
+      {verifiedCount}/{items.length} items verified at source
+    </span>
+    <span>✓ primary · ◐ secondary</span>
+  </div>
+</main>
+
+<style>
+  .lead {
+    text-align: center;
+    margin: 1.6rem auto 0;
+    max-width: 920px;
+  }
+  .kicker {
+    color: var(--accent);
+  }
+  .headline {
+    font-family: var(--font-head);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(1.7rem, 4.2vw, 3rem);
+    line-height: 1.04;
+    letter-spacing: -0.005em;
+    margin: 0.4rem 0 0;
+  }
+  .headline a {
+    text-decoration: none;
+  }
+  .headline a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+  .deck {
+    font-style: italic;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    margin: 0.5rem 0 0;
+    color: var(--ink-soft);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.9fr);
+    margin-top: 0.4rem;
+  }
+  .col {
+    padding: 0 1.1rem;
+    font-size: 0.97rem;
+    line-height: 1.55;
+  }
+  .col p {
+    margin: 0 0 0.8rem;
+  }
+  .col-1 {
+    padding-left: 0;
+  }
+  .col-2 {
+    border-left: 1px solid var(--rule);
+  }
+  .brief {
+    border-left: 3px double var(--rule);
+    padding-right: 0;
+  }
+  .meta {
+    color: var(--ink-faint);
+    font-size: 0.65rem;
+  }
+  .continued {
+    display: inline-block;
+    font-size: 0.68rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .brief-title {
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.35rem;
+    margin: 0 0 0.7rem;
+    font-weight: 400;
+    font-size: 0.78rem;
+  }
+  .brief-title a {
+    text-decoration: none;
+  }
+  .item h3 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.02rem;
+    line-height: 1.2;
+    margin: 0 0 0.25rem;
+  }
+  .item p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  .src {
+    font-style: italic;
+  }
+  .fleuron {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 0.45rem 0;
+    color: var(--ink-soft);
+  }
+  .run {
+    margin-top: 1.6rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.35rem 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    font-size: 0.64rem;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .brief {
+      grid-column: 1 / -1;
+      border-left: 0;
+      border-top: 3px double var(--rule);
+      padding: 1rem 0 0;
+      margin-top: 1rem;
+      columns: 2;
+      column-gap: 2rem;
+      column-rule: 1px solid var(--rule-soft);
+    }
+    .brief-title {
+      column-span: all;
+    }
+    .item {
+      break-inside: avoid;
+    }
+  }
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .col {
+      padding: 0;
+    }
+    .col-2 {
+      border-left: 0;
+    }
+    .brief {
+      columns: 1;
+    }
+  }
+</style>

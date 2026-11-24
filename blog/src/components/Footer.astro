@@ -1,0 +1,23 @@
+---
+import { t } from '../i18n/ui';
+---
+
+<footer class="footer sc">
+  <span>{t('footer.made')}</span>
+  <span aria-hidden="true">❧</span>
+  <span>{t('footer.tomorrow')}</span>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 2.5rem;
+    border-top: 3px double var(--rule);
+    padding-top: 0.6rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+</style>

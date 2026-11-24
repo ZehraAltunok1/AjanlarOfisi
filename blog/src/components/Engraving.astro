@@ -1,0 +1,104 @@
+---
+// Engraving-style illustration chosen by topic. Pure SVG, no external images.
+interface Props {
+  tag?: string;
+  caption: string;
+}
+const { tag = '', caption } = Astro.props;
+const motif = /secur|privacy|crypto/i.test(tag)
+  ? 'lock'
+  : /chip|hardware|semi|device/i.test(tag)
+    ? 'chip'
+    : /science|quantum|physics|space|bio/i.test(tag)
+      ? 'atom'
+      : /ai|model|agent|noonwire/i.test(tag)
+        ? 'press'
+        : 'globe';
+const id = `h${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<figure class="engraving">
+  <svg viewBox="0 0 240 140" role="img" aria-label={caption}>
+    <defs>
+      <pattern id={id} width="4" height="4" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="0.85" fill="var(--ink)"></circle>
+      </pattern>
+    </defs>
+    <rect width="240" height="140" fill="var(--paper-deep)"></rect>
+    {
+      motif === 'chip' && (
+        <g stroke="var(--ink)" fill="none">
+          <rect x="70" y="30" width="100" height="80" fill={`url(#${id})`} />
+          <rect x="88" y="46" width="64" height="48" fill="var(--paper-deep)" />
+          {[40, 55, 70, 85, 100].map((y) => (
+            <>
+              <line x1="56" y1={y} x2="70" y2={y} />
+              <line x1="170" y1={y} x2="184" y2={y} />
+            </>
+          ))}
+        </g>
+      )
+    }
+    {
+      motif === 'lock' && (
+        <g stroke="var(--ink)" fill="none" stroke-width="2">
+          <path d="M95 64 V48 a25 25 0 0 1 50 0 V64" />
+          <rect x="82" y="64" width="76" height="56" fill={`url(#${id})`} />
+          <circle cx="120" cy="88" r="7" fill="var(--paper-deep)" />
+          <line x1="120" y1="95" x2="120" y2="106" />
+        </g>
+      )
+    }
+    {
+      motif === 'atom' && (
+        <g stroke="var(--ink)" fill="none" stroke-width="1.4">
+          <ellipse cx="120" cy="70" rx="64" ry="20" />
+          <ellipse cx="120" cy="70" rx="64" ry="20" transform="rotate(60 120 70)" />
+          <ellipse cx="120" cy="70" rx="64" ry="20" transform="rotate(-60 120 70)" />
+          <circle cx="120" cy="70" r="11" fill={`url(#${id})`} />
+        </g>
+      )
+    }
+    {
+      motif === 'press' && (
+        <g stroke="var(--ink)" fill="none" stroke-width="1.4">
+          <rect x="60" y="34" width="120" height="16" fill={`url(#${id})`} />
+          <circle cx="90" cy="76" r="20" fill={`url(#${id})`} />
+          <circle cx="150" cy="76" r="20" fill={`url(#${id})`} />
+          <circle cx="90" cy="76" r="5" fill="var(--paper-deep)" />
+          <circle cx="150" cy="76" r="5" fill="var(--paper-deep)" />
+          <path d="M40 112 H200 M60 50 V60 M180 50 V60" />
+          <path d="M70 100 L110 112 M130 112 L170 100" />
+        </g>
+      )
+    }
+    {
+      motif === 'globe' && (
+        <g stroke="var(--ink)" fill="none" stroke-width="1.4">
+          <circle cx="120" cy="70" r="46" fill={`url(#${id})`} />
+          <ellipse cx="120" cy="70" rx="20" ry="46" />
+          <path d="M74 70 H166 M82 46 H158 M82 94 H158" />
+        </g>
+      )
+    }
+  </svg>
+  <figcaption>{caption}</figcaption>
+</figure>
+
+<style>
+  .engraving {
+    margin: 0 0 0.8rem;
+  }
+  .engraving svg {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--rule);
+  }
+  figcaption {
+    font-style: italic;
+    font-size: 0.78rem;
+    text-align: center;
+    margin-top: 0.3rem;
+    color: var(--ink-soft);
+  }
+</style>

@@ -18,15 +18,22 @@ date: 2026-11-24
 status: draft
 tags: [ai, chips, security]
 summary: "One-sentence summary of the day (≤ 160 characters)."
+weather: "Cloudy, with a chance of new models"   # 'Tech weather' kulağı, ≤ 80 karakter, esprili ama nazik
 ---
 ## <Item headline>
+
 2–3 sentences: what happened, why it matters.
-Source: [Publisher](https://...)
+Source: [Publisher](https://...) · ✅
 ```
 - 5–7 madde, önem sırasıyla. Her maddede en az 1 kaynak linki.
+- `Source:` satırı **tek satırdır** ve sonunda doğrulama etiketi olur: `· ✅` (birincil) veya `· 🟡` (ikincil).
+  Site bu satırı okuyup ✓ / ◐ rozetini basar. Birden fazla kaynak: `Source: [A](url), [B](url) · ✅`.
 
 ### Deep Dive (`04-makale.md`)
-- Aynı frontmatter, `type: article`, ayrıca `readingMinutes`.
+- Aynı frontmatter (`weather` hariç), `type: article`, ayrıca `readingMinutes` ve `deck`
+  (manşet altındaki italik alt başlık, tek cümle, nokta yok).
+- Başlık (`title`) ön sayfada BÜYÜK HARFLE basılır: kısa tut (≤ 70 karakter).
+- Kaynaklar en sonda `## Sources` başlığı altında numaralı liste.
 - 700–1100 kelime. Yapı: giriş (ne oldu) → arka plan → nasıl çalışıyor / ne değişiyor →
   kimleri etkiliyor → açık sorular → kaynaklar listesi.
 - En az 3 kaynak, en az 1'i birincil.

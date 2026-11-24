@@ -12,7 +12,7 @@ Zehra'nın projelerini yöneten yapay zekâ ajanlarından oluşan bir "ofis".
 | [takimlar/blog/](./takimlar/blog/) | Blog takımı: iş tarifi, kurallar, defter, koşular |
 | [.claude/agents/](./.claude/agents/) | Alt ajan tanımları |
 | [sirket/](./sirket/) | Ajan kimliği, kayıt formatı |
-| `blog/` | Noonwire sitesi (Astro — yakında) |
+| [blog/](./blog/) | Noonwire sitesi (Astro). Önizleme: `pnpm --dir blog dev` → localhost:4321 |
 | `ofis/` | Ofis ekranı (yalnızca yerelde, yakında) |
 | [docs/](./docs/) | İlerleme, kararlar, yol haritası |
 

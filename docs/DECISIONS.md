@@ -21,6 +21,16 @@
 - **Karar:** Ofis görünümü blog sitesinden ayrı, `ofis/` altında yerelde çalışan bir sayfa olacak; Vercel'e gitmeyecek.
 - **Sonuç:** Veri kaynağı `takimlar/*/kosu/*/olaylar.jsonl` ve `durum.json`.
 
+## ADR-007: Noonwire tasarımı — eski broadsheet gazete (2026-11-25)
+- **Bağlam:** Üç yön sunuldu (Öğlen Baskısı, Sinyal Terminali, İsviçre Izgarası); Zehra A'yı seçip
+  "eski Times gazetesi tarzında" süslenmesini istedi.
+- **Karar:** Gotik başlık (UnifrakturMaguntia), manşet Old Standard TT, metin Newsreader; kulak kutuları, künye satırı
+  (Vol./No./tarih/fiyat), çok kolon + iki yana yaslı metin + büyük ilk harf, gravür tarzı SVG çizimler, ❧ ve ✦ süsleri,
+  ✓/◐ doğrulama rozetleri. Gece baskısı = karanlık mod. Gerçek bir gazetenin adı/logosu/arması kullanılmaz.
+- **Teknik:** Astro 7 (statik), `@astrojs/rss`; TypeScript 6 (astro check henüz TS 7 desteklemiyor).
+  Arayüz metinleri `blog/src/i18n/ui.ts`'te (Türkçe sonra). Fontlar şimdilik Google Fonts'tan.
+- **Sonuç:** Sayı numarası tarihten otomatik; ilk sayı "No. 000 · Specimen edition" (gerçek haber değil, gazetenin nasıl yapıldığını anlatır).
+
 ## ADR-006: Commit'ler otomatik, push onaylı (2026-11-24)
 - **Bağlam:** Zehra sistemin daha otomatik olmasını, yalnızca gerçekten önemli konularda sorulmasını istedi.
 - **Karar:** Claude ve ajanlar sormadan commit atar; şart: testler/build geçer ve pre-commit güvenlik taraması

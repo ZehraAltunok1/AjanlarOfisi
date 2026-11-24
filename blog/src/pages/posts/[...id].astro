@@ -1,0 +1,163 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
+import Footer from '../../components/Footer.astro';
+import { countSources, formatLongDate, getEditionFor, getPublishedPosts, padNo, type Post } from '../../lib/editions';
+import { t } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const edition = await getEditionFor(post);
+const sources = countSources(post.body);
+const isBrief = post.data.type === 'brief';
+---
+
+<Base title={post.data.title} description={post.data.summary}>
+  <Masthead compact edition={edition} />
+  <main id="main">
+    <article class:list={['story', { brief: isBrief }]}>
+      <header>
+        <div class="sc kicker">
+          {isBrief ? 'Daily brief' : 'Deep dive'}
+          {post.data.tags.map((tag) => (
+            <>
+              {' · '}
+              <a href={`/topics/${tag}`}>{tag}</a>
+            </>
+          ))}
+        </div>
+        <h1>{post.data.title}</h1>
+        {post.data.deck && <p class="deck">{post.data.deck}</p>}
+        <div class="byline sc">
+          <span>{t('article.by')}</span>
+          {post.data.readingMinutes && <span>{t('lead.minRead', { n: post.data.readingMinutes })}</span>}
+          <span>{t('lead.sources', { n: sources })} ✓</span>
+        </div>
+      </header>
+      <div class:list={['body', 'justify', { dropcap: !isBrief }]}>
+        <Content />
+      </div>
+      <footer class="end">
+        <div class="ornament" aria-hidden="true">❧</div>
+        {
+          edition && (
+            <p class="sc">
+              <a href={`/issue/${edition.dateKey}`}>
+                {t('article.issue', { n: padNo(edition.number), date: formatLongDate(edition.date) })}
+              </a>
+            </p>
+          )
+        }
+        <p class="sc">
+          <a href="/">← {t('article.back')}</a>
+        </p>
+      </footer>
+    </article>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .story {
+    max-width: var(--measure);
+    margin: 2rem auto 0;
+  }
+  header {
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.9rem;
+    margin-bottom: 1.4rem;
+  }
+  .kicker {
+    color: var(--accent);
+  }
+  .kicker a {
+    color: inherit;
+    text-decoration: none;
+  }
+  h1 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    line-height: 1.08;
+    margin: 0.4rem 0 0;
+  }
+  .deck {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink-soft);
+    margin: 0.5rem 0 0;
+  }
+  .byline {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+    color: var(--ink-faint);
+    font-size: 0.64rem;
+  }
+  .body {
+    font-size: 1.12rem;
+    line-height: 1.68;
+  }
+  .body :global(p) {
+    margin: 0 0 1rem;
+  }
+  .body :global(h2) {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 2rem 0 0.8rem;
+  }
+  .body :global(h2)::before {
+    content: '✦  ✦  ✦';
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    margin-bottom: 0.7rem;
+    font-weight: 400;
+    color: var(--ink-soft);
+  }
+  .brief .body :global(h2) {
+    text-align: left;
+    font-size: 1.2rem;
+    margin: 1.4rem 0 0.4rem;
+  }
+  .brief .body :global(h2)::before {
+    content: '❧';
+    letter-spacing: 0;
+    text-align: center;
+  }
+  .body :global(ol),
+  .body :global(ul) {
+    font-size: 0.95rem;
+    padding-left: 1.4rem;
+  }
+  .body :global(blockquote) {
+    margin: 1.2rem 0;
+    padding: 0 1.2rem;
+    border-left: 3px double var(--rule);
+    font-style: italic;
+  }
+  .end {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .end a {
+    text-decoration: none;
+  }
+  .end a:hover {
+    text-decoration: underline;
+  }
+</style>

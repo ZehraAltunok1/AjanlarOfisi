@@ -1,0 +1,74 @@
+---
+import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
+import Footer from '../../components/Footer.astro';
+import { getPublishedPosts } from '../../lib/editions';
+import { t } from '../../i18n/ui';
+
+const posts = await getPublishedPosts();
+const counts = new Map<string, number>();
+for (const p of posts) for (const tag of p.data.tags) counts.set(tag, (counts.get(tag) ?? 0) + 1);
+const tags = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+---
+
+<Base title={t('topics.title')}>
+  <Masthead compact />
+  <main id="main" class="topics">
+    <h1>{t('topics.title')}</h1>
+    <p class="deck">{t('topics.deck')}</p>
+    <div class="ornament" aria-hidden="true">✦ ✦ ✦</div>
+    <ul>
+      {
+        tags.map(([tag, n]) => (
+          <li>
+            <a href={`/topics/${tag}`}>
+              <span class="sc">{tag}</span> <span class="n">({n})</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .topics {
+    max-width: 760px;
+    margin: 2rem auto 0;
+    text-align: center;
+  }
+  h1 {
+    font-family: var(--font-head);
+    text-transform: uppercase;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+  }
+  .deck {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0.3rem 0 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  a {
+    display: inline-block;
+    border: 1px solid var(--rule);
+    padding: 0.3rem 0.8rem;
+    text-decoration: none;
+  }
+  a:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .n {
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+</style>

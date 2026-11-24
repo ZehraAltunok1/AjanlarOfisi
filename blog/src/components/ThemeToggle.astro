@@ -1,0 +1,44 @@
+---
+import { t } from '../i18n/ui';
+---
+
+<button class="toggle sc" type="button" data-day={t('theme.day')} data-night={t('theme.night')} aria-pressed="false">
+  {t('theme.night')}
+</button>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('button.toggle');
+  const root = document.documentElement;
+  const sync = () => {
+    const night = root.dataset.theme === 'night';
+    buttons.forEach((b) => {
+      b.textContent = night ? (b.dataset.day ?? '') : (b.dataset.night ?? '');
+      b.setAttribute('aria-pressed', String(night));
+    });
+  };
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const night = root.dataset.theme !== 'night';
+      if (night) root.dataset.theme = 'night';
+      else delete root.dataset.theme;
+      localStorage.setItem('noonwire-theme', night ? 'night' : 'day');
+      sync();
+    }),
+  );
+  sync();
+</script>
+
+<style>
+  .toggle {
+    font-size: 0.68rem;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    padding: 0.15rem 0.5rem;
+    cursor: pointer;
+  }
+  .toggle:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+</style>

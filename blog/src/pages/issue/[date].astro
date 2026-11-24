@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
+import FrontPage from '../../components/FrontPage.astro';
+import Footer from '../../components/Footer.astro';
+import { formatLongDate, getEditions, padNo, type Edition } from '../../lib/editions';
+
+export async function getStaticPaths() {
+  const editions = await getEditions();
+  return editions.map((edition) => ({ params: { date: edition.dateKey }, props: { edition } }));
+}
+
+interface Props {
+  edition: Edition;
+}
+const { edition } = Astro.props;
+---
+
+<Base title={`No. ${padNo(edition.number)} — ${formatLongDate(edition.date)}`} description={edition.brief?.data.summary}>
+  <Masthead edition={edition} />
+  <FrontPage edition={edition} />
+  <Footer />
+</Base>

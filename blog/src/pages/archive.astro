@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import Masthead from '../components/Masthead.astro';
+import Footer from '../components/Footer.astro';
+import { formatLongDate, getEditions, padNo, type Edition } from '../lib/editions';
+import { t } from '../i18n/ui';
+
+const editions = await getEditions();
+const byMonth = new Map<string, Edition[]>();
+for (const e of editions) {
+  const m = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(e.date);
+  byMonth.set(m, [...(byMonth.get(m) ?? []), e]);
+}
+---
+
+<Base title={t('archive.title')}>
+  <Masthead compact />
+  <main id="main" class="listing">
+    <h1>{t('archive.title')}</h1>
+    <p class="deck">{t('archive.deck')}</p>
+    <div class="ornament" aria-hidden="true">✦ ✦ ✦</div>
+    {
+      [...byMonth].map(([month, list]) => (
+        <section>
+          <h2 class="sc">{month}</h2>
+          <ol>
+            {list.map((e) => (
+              <li>
+                <a href={`/issue/${e.dateKey}`}>
+                  <span class="no sc">No. {padNo(e.number)}</span>
+                  <span class="when">{formatLongDate(e.date)}</span>
+                  <span class="lead">{e.article?.data.title ?? e.brief?.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))
+    }
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .listing {
+    max-width: 760px;
+    margin: 2rem auto 0;
+  }
+  h1 {
+    font-family: var(--font-head);
+    text-transform: uppercase;
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0;
+  }
+  .deck {
+    text-align: center;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0.3rem 0 0;
+  }
+  h2 {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.3rem;
+    font-weight: 400;
+  }
+  ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li a {
+    display: grid;
+    grid-template-columns: 5.5rem 13rem minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--rule-soft);
+    text-decoration: none;
+    align-items: baseline;
+  }
+  li a:hover .lead {
+    text-decoration: underline;
+  }
+  .when {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .lead {
+    font-family: var(--font-head);
+    font-weight: 700;
+  }
+  @media (max-width: 640px) {
+    li a {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.1rem;
+    }
+  }
+</style>

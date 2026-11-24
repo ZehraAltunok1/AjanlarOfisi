@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import Masthead from '../../components/Masthead.astro';
+import Footer from '../../components/Footer.astro';
+import { formatShortDate, getPublishedPosts, postUrl, type Post } from '../../lib/editions';
+import { t } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  const tags = new Set(posts.flatMap((p) => p.data.tags));
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: { tag, posts: posts.filter((p) => p.data.tags.includes(tag)) },
+  }));
+}
+
+interface Props {
+  tag: string;
+  posts: Post[];
+}
+const { tag, posts } = Astro.props;
+---
+
+<Base title={t('topic.title', { tag })}>
+  <Masthead compact />
+  <main id="main" class="listing">
+    <h1>{t('topic.title', { tag })}</h1>
+    <div class="ornament" aria-hidden="true">✦ ✦ ✦</div>
+    {
+      posts.map((p) => (
+        <article>
+          <div class="sc meta">
+            {p.data.type === 'brief' ? 'Daily brief' : 'Deep dive'} · {formatShortDate(p.data.date)}
+          </div>
+          <h2>
+            <a href={postUrl(p)}>{p.data.title}</a>
+          </h2>
+          <p>{p.data.summary}</p>
+        </article>
+      ))
+    }
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .listing {
+    max-width: 760px;
+    margin: 2rem auto 0;
+  }
+  h1 {
+    font-family: var(--font-head);
+    text-transform: uppercase;
+    text-align: center;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    margin: 0;
+  }
+  article {
+    border-bottom: 1px solid var(--rule-soft);
+    padding: 0.8rem 0;
+  }
+  .meta {
+    color: var(--accent);
+    font-size: 0.65rem;
+  }
+  h2 {
+    font-family: var(--font-head);
+    margin: 0.2rem 0;
+    font-size: 1.35rem;
+  }
+  h2 a {
+    text-decoration: none;
+  }
+  p {
+    margin: 0;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+</style>
