@@ -17,3 +17,6 @@
 {"t":"2026-11-24T21:30:30+03:00","ajan":"bekci","olay":"basladi","not":"Round 2: revize 03-ozet ve 04-makale denetimi"}
 {"t":"2026-11-24T21:30:30+03:00","ajan":"bekci","olay":"kabul","not":"Round 2: 3 red maddesi giderildi, yeni 02-disi iddia yok"}
 {"t":"2026-11-24T21:31:06+03:00","ajan":"yayin-yonetmeni","olay":"onay-bekliyor","cikti":"06-rapor.md","not":"bekçi tur 2 kabul; Zehra onayı bekleniyor"}
+{"t":"2026-11-24T22:17:24+03:00","ajan":"yayin-yonetmeni","olay":"teslim","kimden":"zehra","kime":"yayinci","not":"Zehra onayladı"}
+{"t":"2026-11-24T22:17:40+03:00","ajan":"yayinci","olay":"basladi","not":"Zehra onayı (Onayla); bekçi tur 2 kabul"}
+{"t":"2026-11-24T22:18:03+03:00","ajan":"yayinci","olay":"yayinlandi","cikti":"blog/src/content/posts/2026-11-24-brief.md, blog/src/content/posts/2026-11-24-nvidias-ceo-returns-as-the-us-blacklists-chip-diversion-firms.md","not":"build 17 sayfa, 0 hata; yayinlananlar.json +8"}

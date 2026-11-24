@@ -1,5 +1,12 @@
 # İlerleme günlüğü
 
+## 2026-11-24 (akşam) — Zehra + Claude
+- **Yapıldı:** İlk gerçek ajan koşusu (Faz 4). 27 sayfa → 15 aday → 13 ✅ / 2 🟡 → brief 7 madde + Deep Dive (~890 kelime).
+  Bekçi tur 1 red (02 dışı 3 cümle), tur 2 kabul. Zehra onayladı, Yayıncı yayına aldı: **No. 001**.
+  Örnek sayı 23 Kasım'a taşındı.
+- **Açık:** karışık ✅/🟡 maddelerde rozet kuralı (defter → kural önerisi); makale içi [1] dipnot işaretleri sitede düz metin görünüyor.
+- **Sıradaki:** Faz 5 — ofis ekranı; ardından Faz 6 — 12:00 zamanlayıcı.
+
 ## 2026-11-25 — Zehra + Claude
 - **Yapıldı:** Noonwire sitesi kuruldu (`blog/`, Astro 7): ön sayfa (gotik başlık, kulaklar, künye, manşet,
   2 kolon makale + gravür + "In brief" kolonu, koşu satırı), sayı sayfaları `/issue/<tarih>`, makale sayfası,
