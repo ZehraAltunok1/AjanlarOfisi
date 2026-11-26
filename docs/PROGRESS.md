@@ -1,5 +1,12 @@
 # İlerleme günlüğü
 
+## 2026-11-26 — Zehra + Claude
+- **Yapıldı:** Faz 5 — ofis ekranı (`ofis/`): bağımlılıksız Node sunucusu (127.0.0.1:4400, salt okunur) +
+  pixel-art haber odası: 7 masa (5 ajan, Yayın Yönetmeni, Zehra'nın cam odası), durum lambaları, konuşma balonları,
+  uçan kâğıt teslimleri, baskı makinesi, duvar saati ve durum panosu; masa detayı, günün akışı, defter, koşu dosyası görüntüleyici,
+  "tekrar oynat" ve 4 sn'de bir canlı yenileme. Tarayıcıda test edildi, konsol hatası yok.
+- **Sıradaki:** Faz 6 — her gün 12:00 zamanlayıcı.
+
 ## 2026-11-24 (akşam) — Zehra + Claude
 - **Yapıldı:** İlk gerçek ajan koşusu (Faz 4). 27 sayfa → 15 aday → 13 ✅ / 2 🟡 → brief 7 madde + Deep Dive (~890 kelime).
   Bekçi tur 1 red (02 dışı 3 cümle), tur 2 kabul. Zehra onayladı, Yayıncı yayına aldı: **No. 001**.

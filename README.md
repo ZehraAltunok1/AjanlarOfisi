@@ -13,7 +13,7 @@ Zehra'nın projelerini yöneten yapay zekâ ajanlarından oluşan bir "ofis".
 | [.claude/agents/](./.claude/agents/) | Alt ajan tanımları |
 | [sirket/](./sirket/) | Ajan kimliği, kayıt formatı |
 | [blog/](./blog/) | Noonwire sitesi (Astro). Önizleme: `pnpm --dir blog dev` → localhost:4321 |
-| `ofis/` | Ofis ekranı (yalnızca yerelde, yakında) |
+| [ofis/](./ofis/) | Ofis ekranı (yalnızca yerel): `node ofis/server.mjs` → 127.0.0.1:4400 |
 | [docs/](./docs/) | İlerleme, kararlar, yol haritası |
 
 ## Nasıl çalışır

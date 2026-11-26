@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AjanlarOfisi — Ofis</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%238e2f12'/><rect x='4' y='3' width='8' height='6' fill='%23f3ecdd'/><rect x='3' y='10' width='10' height='3' fill='%23f3ecdd'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Silkscreen&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=UnifrakturMaguntia&display=swap"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">▣</span>
+        <span>AjanlarOfisi</span>
+        <span class="sub">· Noonwire haber odası</span>
+      </div>
+      <div class="controls">
+        <label>Takım <select id="team"></select></label>
+        <label>Koşu <select id="run"></select></label>
+        <button id="replay" type="button" title="Günü baştan oynat">▶ Tekrar oynat</button>
+        <label class="speed">Hız
+          <select id="speed">
+            <option value="1400">yavaş</option>
+            <option value="800" selected>normal</option>
+            <option value="300">hızlı</option>
+          </select>
+        </label>
+        <span id="live" class="live" title="Dosyalar her 4 saniyede bir okunur">● canlı</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="stage" aria-label="Ofis görünümü">
+        <svg id="office" viewBox="0 0 960 600" role="img" aria-labelledby="office-title">
+          <title id="office-title">Ajanların masalarını ve durumlarını gösteren ofis planı</title>
+        </svg>
+        <div class="legend">
+          <span><i class="dot s-uyuyor"></i> uyuyor</span>
+          <span><i class="dot s-calisiyor"></i> çalışıyor</span>
+          <span><i class="dot s-bitti"></i> bitti / kabul</span>
+          <span><i class="dot s-red"></i> red</span>
+          <span><i class="dot s-bekliyor"></i> onay bekliyor</span>
+          <span><i class="dot s-takildi"></i> takıldı</span>
+        </div>
+      </section>
+
+      <aside class="side" id="side" aria-live="polite"></aside>
+    </main>
+
+    <section class="lower">
+      <div class="panel">
+        <h2>Günün akışı</h2>
+        <ol id="timeline" class="timeline"></ol>
+      </div>
+      <div class="panel">
+        <h2>Defter</h2>
+        <div id="ledger"></div>
+      </div>
+    </section>
+
+    <section class="panel viewer" id="viewer" hidden>
+      <div class="viewer-head">
+        <h2 id="viewer-title"></h2>
+        <button type="button" id="viewer-close">Kapat ✕</button>
+      </div>
+      <pre id="viewer-body"></pre>
+    </section>
+
+    <footer class="foot">Yalnızca bu bilgisayarda çalışır · veriler ajanların kendi dosyalarından okunur · salt okunur</footer>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

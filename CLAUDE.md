@@ -35,6 +35,7 @@ Alt ajan tanımları: `.claude/agents/*.md`. Takımın iş tarifi: `takimlar/blo
 | **"bugünkü taslakları göster"** | `takimlar/blog/kosu/<bugün>/` altındaki taslaklar ve bekçi kararı özetlenir. |
 | **"onayla"** / **"onayla: <dosya>"** | Taslak `status: approved` olur, Yayıncı blog'a yerleştirir, yerel commit atılır. Push için ayrıca sorulur. |
 | **"reddet: <gerekçe>"** | Taslak `rejected` olur, gerekçe `defter.md`'ye ders olarak düşer. |
+| **"ofisi aç"** | `node ofis/server.mjs` çalıştırılır → http://127.0.0.1:4400 (yalnızca yerel, salt okunur). |
 | **"haftalık değerlendirme"** | Son 7 günün kayıtlarından rapor: ne çıktı, kabul oranı, hangi ajan nerede takıldı. |
 
 ## 4. Git kuralları
