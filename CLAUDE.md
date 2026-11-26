@@ -31,7 +31,7 @@ Alt ajan tanımları: `.claude/agents/*.md`. Takımın iş tarifi: `takimlar/blo
 ## 3. Komutlar (Zehra'nın yazacakları)
 | Zehra yazar | Ne olur |
 |---|---|
-| **"günlük koşuyu başlat"** | `takimlar/blog/takim.md` → "Günlük koşu" prosedürü baştan sona çalışır. |
+| **"günlük koşuyu başlat"** | `takimlar/blog/GUNLUK-KOSU.md` talimatı baştan sona çalışır (12:00 zamanlanmış görev de bunu kullanır). |
 | **"bugünkü taslakları göster"** | `takimlar/blog/kosu/<bugün>/` altındaki taslaklar ve bekçi kararı özetlenir. |
 | **"onayla"** / **"onayla: <dosya>"** | Taslak `status: approved` olur, Yayıncı blog'a yerleştirir, yerel commit atılır. Push için ayrıca sorulur. |
 | **"reddet: <gerekçe>"** | Taslak `rejected` olur, gerekçe `defter.md`'ye ders olarak düşer. |

@@ -21,6 +21,13 @@
 - **Karar:** Ofis görünümü blog sitesinden ayrı, `ofis/` altında yerelde çalışan bir sayfa olacak; Vercel'e gitmeyecek.
 - **Sonuç:** Veri kaynağı `takimlar/*/kosu/*/olaylar.jsonl` ve `durum.json`.
 
+## ADR-008: 12:00 zamanlanmış koşu (2026-11-26)
+- **Karar:** Claude masaüstü uygulamasının zamanlanmış görevi `noonwire-gunluk-kosu`, her gün 12:00 (yerel saat, ~10 dk gecikmeyle).
+  Görev istemi kısa; asıl talimat repoda `takimlar/blog/GUNLUK-KOSU.md` — değişiklikler git'te izlenir.
+- **Sınırlar:** Görev Auto izin modunda kayıtlı; push/yayın/dış gönderim yok, yalnızca yerel commit. Yayın, Zehra'nın aynı
+  oturumda "onayla" demesiyle.
+- **Sonuç:** Bilgisayar/uygulama kapalıysa koşu açılışta yapılır. Bulut zamanlanmış ajanına geçiş Vercel ile birlikte düşünülecek.
+
 ## ADR-007: Noonwire tasarımı — eski broadsheet gazete (2026-11-25)
 - **Bağlam:** Üç yön sunuldu (Öğlen Baskısı, Sinyal Terminali, İsviçre Izgarası); Zehra A'yı seçip
   "eski Times gazetesi tarzında" süslenmesini istedi.

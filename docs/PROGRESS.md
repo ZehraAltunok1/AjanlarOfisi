@@ -1,5 +1,12 @@
 # İlerleme günlüğü
 
+## 2026-11-26 (2) — Zehra + Claude
+- **Yapıldı:** Faz 6 — zamanlayıcı. Masaüstü uygulamasında zamanlanmış görev `noonwire-gunluk-kosu`
+  (cron `0 12 * * *`, yük dengeleme gecikmesiyle ~12:10, Auto izin modu). Görev yalnızca
+  `takimlar/blog/GUNLUK-KOSU.md` talimatını uygular; taslakları commit'leyip "onay-bekliyor"da bırakır, push/yayın yapmaz.
+- **Not:** Uygulama kapalıysa koşu bir sonraki açılışta çalışır. İlk otomatik koşu: 2026-11-27.
+- **Sıradaki:** Faz 7 — 2 hafta gözlem (kabul oranı, takılma noktaları, kural güncellemeleri).
+
 ## 2026-11-26 — Zehra + Claude
 - **Yapıldı:** Faz 5 — ofis ekranı (`ofis/`): bağımlılıksız Node sunucusu (127.0.0.1:4400, salt okunur) +
   pixel-art haber odası: 7 masa (5 ajan, Yayın Yönetmeni, Zehra'nın cam odası), durum lambaları, konuşma balonları,
